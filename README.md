@@ -1,6 +1,6 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
 <h3>Name: Logesh B</h3>
-<h3>Register Number:212224110034 </h3>
+<h3>Register Number: 212224110034</h3>
 <h3>Date: 15/10/2026</h3>
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
@@ -72,34 +72,11 @@ F H <BR>
 <h3>Sample Output</h3>
 <hr>
 ['A', 'B', 'E', 'D', 'C', 'G', 'F', 'H']
+
 <hr>
 
-## PROGRAM:
-```
-from collections import defaultdict
-def dfs(graph,start,visited,path):
-    path.append(start)
-    visited[start]=True
-    for neighbour in graph[start]:
-        if visited[neighbour]==False:
-            dfs(graph,neighbour,visited,path)
-            visited[neighbour]=True
-    return path
-graph=defaultdict(list)
-nodes,edges=map(int,input().split())
-for _ in range(edges):
-    u,v=map(str,input().split())
-    #G.add_edge(u,v)
-    graph[u].append(v)
-    graph[v].append(u)
-start=input()
-visited=defaultdict(bool)
-path=[]
-traversedpath=dfs(graph,start,visited,path)
-print(traversedpath)
-```
 <hr>
-<h3>Input</h3>
+<h3>Sample Input</h3>
 <hr>
 5 5 <BR>
 0 1 <BR>
@@ -108,12 +85,47 @@ print(traversedpath)
 2 3 <BR>
 2 4 <BR>
 <hr>
-<h3>Output</h3>
+<h3>Sample Output</h3>
 <hr>
 ['0', '1', '2', '3', '4']
+
+
+## CODE:
+```
+from collections import defaultdict
+
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+    for neighbour in graph[start]:
+        # recursively visit unvisited neighbours
+        if not visited[neighbour]:
+            dfs(graph, neighbour, visited, path)
+    return path
+
+# create graph
+graph = defaultdict(list)
+n, e = map(int, input("Enter number of vertices and edges: ").split())
+
+for i in range(e):
+    u, v = input("Enter edge (u v): ").split()
+    graph[u].append(v)
+    graph[v].append(u)  # if the graph is undirected
+
+start = 'A'
+visited = defaultdict(bool)
+path = []
+
+traversedpath = dfs(graph, start, visited, path)
+print("DFS Traversal Path:", traversedpath)
+```
+
+## Output:
+
+<img width="925" height="248" alt="image" src="https://github.com/user-attachments/assets/a2f884fd-1c69-4d8b-ada0-e519b8040403" />
 
 <hr>
 <h3>Result:</h3>
 <hr>
-<p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
+<p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
 
